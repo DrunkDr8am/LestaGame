@@ -43,7 +43,7 @@ public class Ranges {
     static ArrayList<Coord> getCoorsAround (Coord coord){
         Coord around;
         ArrayList<Coord> list = new ArrayList<Coord>();
-        int i=0,j=0;
+        int i,j;
         boolean onePoint=true;
         for (int x = coord.x-1;x<= coord.x+1;x++) {
             if (onePoint) {i=0;j=0;}
@@ -53,6 +53,7 @@ public class Ranges {
                     if (!around.equals(coord))
 
                         list.add(around);
+            onePoint=!onePoint;
         }
         return list;
     }

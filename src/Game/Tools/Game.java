@@ -3,6 +3,7 @@ package Game.Tools;
 public class Game {
 
     private Ball ball;
+    private GameState state;
 
     public Game(int cols, int rows, int totalBalls) {
         Ranges.setSize(new Coord(cols, rows));
