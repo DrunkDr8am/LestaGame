@@ -77,4 +77,21 @@ class Ball {
         else return null;
     }
 
+    boolean checkColumns(){
+        Coord coord;
+        for (int x = 0;x < GamePanel.COLS;x=x+2) {
+            for (int y = 2; y < GamePanel.ROWS; y++) {
+                coord=new Coord(x,y);
+                if (x == 0 && getColor(coord)!=Box.B2)
+                    return false;
+                if (x == 2 && getColor(coord)!=Box.B1)
+                    return false;
+                if (x == 4 && getColor(coord)!=Box.B3)
+                    return false;
+
+            }
+        }
+        return true;
+    }
+
 }

@@ -2,6 +2,7 @@ package Game.Panel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -12,7 +13,11 @@ import Game.Tools.Box;
 public class GamePanel extends JPanel {
     //Field
 
-    public JPanel panel;
+    private JPanel panel;
+
+    private JLabel label = new JLabel("Game Start! <3");
+
+    private Font font = new Font("состояние",Font.PLAIN,30);
 
     private Game game;
     public static final int COLS = 5;
@@ -32,12 +37,19 @@ public class GamePanel extends JPanel {
         game.start();
         Ranges.setSize(new Coord(COLS, ROWS));
         setImages();
+        initLabel();
         initPanel();
         initFrame();
     }
 
 
 //Functions
+
+    private void initLabel(){
+        add(label);
+        label.setBounds(500,10,80,20);
+        setFont(font);
+    }
 
     private void initPanel() {
         panel = new JPanel() {
@@ -66,6 +78,7 @@ public class GamePanel extends JPanel {
                     game.pressLeftButton(coord, save);
                 if (e.getButton()==MouseEvent.BUTTON3)
                     game.pressRightButton(coord);
+                label.setToolTipText(getMessage());
                 panel.repaint();
             }
         });
@@ -74,6 +87,14 @@ public class GamePanel extends JPanel {
         setFocusable(true);
         requestFocus();
         add(panel);
+    }
+
+    private String getMessage() {
+        switch (game.getState()){
+            case PLAYED: return "Think twice!";
+            case WINNER: return "YOU WIN!";
+            default:return "secret";
+        }
     }
 
     private Image getImage(String name) {
@@ -94,9 +115,10 @@ public class GamePanel extends JPanel {
 
         startFrame.setContentPane(panel);
         startFrame.setLocationRelativeTo(null);
+        startFrame.pack();
         startFrame.setVisible(true);
         startFrame.setIconImage(getImage("b1"));
-        startFrame.pack();
+
     }
 
 
