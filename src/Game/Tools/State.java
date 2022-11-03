@@ -1,6 +1,6 @@
 package Game.Tools;
 
-public enum GameState {
+public enum State {
     PLAYED,
     WINNER
 }

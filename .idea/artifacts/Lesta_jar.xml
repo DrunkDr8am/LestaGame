@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="Lesta:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/Lesta_jar</output-path>
-    <root id="archive" name="Lesta.jar">
-      <element id="module-output" name="Lesta" />
-    </root>
-  </artifact>
-</component>

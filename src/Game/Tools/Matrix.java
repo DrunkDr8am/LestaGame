@@ -20,6 +20,4 @@ class Matrix {
         if (Ranges.inRange(coord))
             matrix[coord.x][coord.y] = box;
     }
-
-
 }

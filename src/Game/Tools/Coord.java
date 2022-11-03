@@ -18,5 +18,4 @@ public class Coord {
         }
         return super.equals(o);
     }
-
 }
