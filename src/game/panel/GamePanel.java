@@ -1,7 +1,7 @@
-package Game.Panel;
+package game.panel;
 
-import Game.Tools.Box;
-import Game.Tools.*;
+import game.tools.Box;
+import game.tools.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -10,18 +10,10 @@ import java.awt.event.MouseEvent;
 public class GamePanel extends JPanel {
 
     private JPanel panel;
-
-    private JLabel label = new JLabel("Game Start! <3");
-
-    private Font font = new Font("состояние", Font.PLAIN, 30);
-
     private Game game;
     public static final int COLS = 5;
-
     public static final int ROWS = 7;
-
     public static final int TOTAL_BALLS = 15;
-
     public static final int IMAGE_SIZE = 100;
 
     public GamePanel() {
@@ -30,7 +22,6 @@ public class GamePanel extends JPanel {
         game.start();
         Ranges.setSize(new Coord(COLS, ROWS));
         setImages();
-        initLabel();
         initPanel();
         initFrame();
     }
@@ -39,12 +30,6 @@ public class GamePanel extends JPanel {
         for (Box box : Box.values()) {
             box.image = getImage(box.name());
         }
-    }
-
-    private void initLabel() {
-        add(label);
-        label.setBounds(500, 10, 80, 20);
-        setFont(font);
     }
 
     private void initPanel() {
@@ -76,7 +61,6 @@ public class GamePanel extends JPanel {
                     game.pressLeftButton(coord, save);
                 if (e.getButton() == MouseEvent.BUTTON3)
                     game.pressRightButton(coord, save);
-                label.setToolTipText(getMessage());
                 panel.repaint();
             }
         });
@@ -96,17 +80,6 @@ public class GamePanel extends JPanel {
         startFrame.pack();
         startFrame.setVisible(true);
         startFrame.setIconImage(getImage("b1"));
-    }
-
-    private String getMessage() {
-        switch (game.getState()) {
-            case PLAYED:
-                return "Think twice!";
-            case WINNER:
-                return "YOU WIN!";
-            default:
-                return "secret";
-        }
     }
 
     private Image getImage(String name) {

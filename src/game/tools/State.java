@@ -1,4 +1,4 @@
-package Game.Tools;
+package game.tools;
 
 public enum State {
     PLAYED,

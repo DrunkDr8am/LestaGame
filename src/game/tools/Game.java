@@ -1,4 +1,4 @@
-package Game.Tools;
+package game.tools;
 
 import javax.swing.*;
 
@@ -17,13 +17,12 @@ public class Game {
         return ball.get(coord);
     }
 
-    public State getState() {
-        return state;
-    }
-
     public void start() {
         ball.start();
         state = State.PLAYED;
+        checkWinner();
+        if(state==State.WINNER)//шанс 1 к 1009008
+            start();
     }
 
     public void pressRightButton(Coord coord, SaveCoord save) {
@@ -70,5 +69,4 @@ public class Game {
     private void stopGame() {
         System.exit(1);
     }
-
 }

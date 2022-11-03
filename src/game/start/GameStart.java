@@ -1,6 +1,6 @@
-package Game.Start;
+package game.start;
 
-import Game.Panel.GamePanel;
+import game.panel.GamePanel;
 
 public class GameStart {
     public static void main(String[] args) {

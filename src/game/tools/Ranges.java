@@ -1,20 +1,21 @@
-package Game.Tools;
+package game.tools;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Ranges {
 
     private static Coord size;
     private static final int[] COLUMNS_FOR_SPAWN = {0,2,4};
-    private static ArrayList<Coord> allCords;
+    private static List<Coord> allCords;
     private static Random random = new Random();
 
-    public static void setSize(Coord _size) {
-        size = _size;
-        allCords = new ArrayList<Coord>();
-        for (int y = 2; y < size.y; y++)
-            for (int x = 0; x < size.x; x++)
+    public static void setSize(Coord size) {
+        Ranges.size = size;
+        allCords = new ArrayList<>();
+        for (int y = 2; y < Ranges.size.y; y++)
+            for (int x = 0; x < Ranges.size.x; x++)
                 allCords.add(new Coord(x, y));
     }
 
@@ -22,13 +23,15 @@ public class Ranges {
         return size;
     }
 
-    public static ArrayList<Coord> getAllCords() {
+    public static List<Coord> getAllCords() {
         return allCords;
     }
 
     static boolean inRange(Coord coord) {
-        return coord.x >= 0 && coord.x < size.x &&
-                coord.y >= 0 && coord.y < size.y;
+        return coord.x >= 0
+                && coord.x < size.x
+                && coord.y >= 0
+                && coord.y < size.y;
     }
 
     static Coord getRandomCoord(){

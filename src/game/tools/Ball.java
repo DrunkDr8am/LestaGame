@@ -1,6 +1,6 @@
-package Game.Tools;
+package game.tools;
 
-import Game.Panel.GamePanel;
+import game.panel.GamePanel;
 
 class Ball {
 
@@ -12,7 +12,7 @@ class Ball {
     }
 
     void start() {
-        ballMap = new Matrix(Box.EMPTY);
+        ballMap = new Matrix();
         for (int y = 2; y < GamePanel.ROWS; y++)
             for (int x = 0; x < GamePanel.COLS; x++) {
                 if (x % 2 != 0 && y % 2 == 0) {
@@ -26,45 +26,45 @@ class Ball {
 
     private void placeBlocks(int x, int y) {
         Coord coord = new Coord(x, y);
-        ballMap.set(coord, Box.PATH);
+        ballMap.setBox(coord, Box.PATH);
     }
 
     Box get(Coord coord) {
-        return ballMap.get(coord);
+        return ballMap.getBox(coord);
     }
 
     private void placeBalls(int i) {
         while (true) {
             Coord coord = Ranges.getRandomCoord();
-            if (Box.B1 == ballMap.get(coord) || Box.B2 == ballMap.get(coord) || Box.B3 == ballMap.get(coord) || Box.PATH == ballMap.get(coord))
+            if (Box.EMPTY != ballMap.getBox(coord))
                 continue;
             if (i < 5)
-                ballMap.set(coord, Box.B1);
+                ballMap.setBox(coord, Box.B1);
             else if (i < 10)
-                ballMap.set(coord, Box.B2);
-            else ballMap.set(coord, Box.B3);
+                ballMap.setBox(coord, Box.B2);
+            else ballMap.setBox(coord, Box.B3);
             break;
         }
     }
 
     boolean isBall(Coord coord) {
-        return Box.B1 == ballMap.get(coord) || Box.B2 == ballMap.get(coord) || Box.B3 == ballMap.get(coord);
+        return Box.B1 == ballMap.getBox(coord) || Box.B2 == ballMap.getBox(coord) || Box.B3 == ballMap.getBox(coord);
     }
 
     boolean isEmpty(Coord coord) {
-        return Box.EMPTY == ballMap.get(coord);
+        return Box.EMPTY == ballMap.getBox(coord);
     }
 
     void set(Coord coord, Box color) {
-        ballMap.set(coord, color);
+        ballMap.setBox(coord, color);
     }
 
     Box getColor(Coord coord) {
-        if (Box.B1 == ballMap.get(coord))
+        if (Box.B1 == ballMap.getBox(coord))
             return Box.B1;
-        else if (Box.B2 == ballMap.get(coord))
+        else if (Box.B2 == ballMap.getBox(coord))
             return Box.B2;
-        else if (Box.B3 == ballMap.get(coord))
+        else if (Box.B3 == ballMap.getBox(coord))
             return Box.B3;
         else return null;
     }
@@ -84,5 +84,4 @@ class Ball {
         }
         return true;
     }
-
 }

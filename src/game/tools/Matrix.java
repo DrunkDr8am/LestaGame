@@ -1,22 +1,22 @@
-package Game.Tools;
+package game.tools;
 
 class Matrix {
 
     private Box[][] matrix;
 
-    Matrix(Box defaultBox) {
+    public Matrix() {
         matrix = new Box[Ranges.getSize().x][Ranges.getSize().y];
         for (Coord coord : Ranges.getAllCords())
-            matrix[coord.x][coord.y] = defaultBox;
+            matrix[coord.x][coord.y] = Box.EMPTY;
     }
 
-    Box get(Coord coord) {
+    public Box getBox(Coord coord) {
         if (Ranges.inRange(coord))
             return matrix[coord.x][coord.y];
         return null;
     }
 
-    void set(Coord coord, Box box) {
+    public void setBox(Coord coord, Box box) {
         if (Ranges.inRange(coord))
             matrix[coord.x][coord.y] = box;
     }
